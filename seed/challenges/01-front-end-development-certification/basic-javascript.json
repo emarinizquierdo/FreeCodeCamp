@@ -107,7 +107,7 @@
         "<code>myNum = myVar;</code>",
         "Assigns <code>5</code> to <code>myVar</code> and then resolves <code>myVar</code> to <code>5</code>  again and assigns it to <code>myNum</code>.",
         "<h4>Instructions</h4>",
-        "Assign the value <code>7</code> to variable <code>a</code>",
+        "Assign the value <code>7</code> to variable <code>a</code>.",
         "Assign the contents of <code>a</code> to variable <code>b</code>."
       ],
       "releasedOn": "January 1, 2016",
@@ -757,7 +757,7 @@
       "title": "Declare String Variables",
       "description": [
         "Previously we have used the code",
-        "<code>var myName = \"your name\"</code>",
+        "<code>var myName = \"your name\";</code>",
         "<code>\"your name\"</code> is called a <dfn>string</dfn> <dfn>literal</dfn>. It is a string because it is a series of zero or more characters enclosed in single or double quotes.",
         "<h4>Instructions</h4>",
         "Create two new <code>string</code> variables: <code>myFirstName</code> and <code>myLastName</code> and assign them the values of your first and last name, respectively."
@@ -870,10 +870,10 @@
         ""
       ],
       "tail": [
-      "(function(){",
-      "if (myStr !== undefined){",
-      "return 'myStr = '+ JSON.stringify(myStr);}",
-      "else{return null;}})();"
+        "(function(){",
+        "if (myStr !== undefined){",
+        "return 'myStr = '+ JSON.stringify(myStr);}",
+        "else{return null;}})();"
       ],
       "solutions": [
         "var myStr = \"\\\\ \\t \\t \\r \\n\";"
@@ -920,7 +920,9 @@
       ],
       "tests": [
         "assert(myStr === \"This is the start. This is the end.\", 'message: <code>myStr</code> should have a value of <code>This is the start. This is the end.</code>');",
-        "assert(/var\\s+myStr\\s*=\\s*([\"'])This is the start\\. \\1\\s*\\+\\s*([\"'])This is the end\\.([\"'])/.test(code), 'message: Use the <code>+</code> operator to build <code>myStr</code>');"
+        "assert(code.match(/([\"']).*([\"'])\\s*\\+\\s*([\"']).*([\"'])/g).length > 1, 'message: Use the <code>+</code> operator to build <code>myStr</code>');",
+        "assert(/var\\s+myStr/.test(code), 'message: <code>myStr</code> should be created using the <code>var</code> keyword.');",
+        "assert(/myStr\\s*=/.test(code), 'message: Make sure to assign the result to the <code>myStr</code> variable.');"
       ],
       "type": "waypoint",
       "challengeType": 1
@@ -2006,7 +2008,7 @@
       "description": [
         "If you'll recall from our discussion of <a href=\"waypoint-storing-values-with-the-equal-operator\" target=\"_blank\">Storing Values with the Equal Operator</a>, everything to the right of the equal sign is resolved before the value is assigned. This means we can take the return value of a function and assign it to a variable.",
         "Assume we have pre-defined a function <code>sum</code> which adds two numbers together, then: ",
-        "<code>var ourSum = sum(5, 12);</code>",
+        "<code>ourSum = sum(5, 12);</code>",
         "will call <code>sum</code> function, which returns a value of <code>17</code> and assigns it to <code>ourSum</code> variable.",
         "<h4>Instructions</h4>",
         "Call the <code>process</code> function with an argument of <code>7</code> and assign its return value to the variable <code>processed</code>."
@@ -2571,7 +2573,7 @@
         "When a condition for an <code>if</code> statement is true, the block of code following it is executed. What about when that condition is false?  Normally nothing would happen. With an <code>else</code> statement, an alternate block of code can be executed.",
         "<blockquote>if (num > 10) {<br>  return \"Bigger than 10\";<br>} else {<br>  return \"10 or Less\";<br>}</blockquote>",
         "<h4>Instructions</h4>",
-        "Combine the <code>if</code> statements into a single statement."
+        "Combine the <code>if</code> statements into a single <code>if/else</code> statement."
       ],
       "releasedOn": "January 1, 2016",
       "challengeSeed": [
@@ -2648,6 +2650,47 @@
         "assert(myTest(7) === \"Between 5 and 10\", 'message: <code>myTest(7)</code> should return \"Between 5 and 10\"');",
         "assert(myTest(10) === \"Between 5 and 10\", 'message: <code>myTest(10)</code> should return \"Between 5 and 10\"');",
         "assert(myTest(12) === \"Greater than 10\", 'message: <code>myTest(12)</code> should return \"Greater than 10\"');"
+      ],
+      "type": "waypoint",
+      "challengeType": 1
+    },
+    {
+      "id": "5690307fddb111c6084545d7",
+      "title": "Logical Order in If Else Statements",
+      "description": [
+        "Order is important in <code>if</code>, <code>else if</code> statements.",
+        "The loop is executed from top to bottom so you will want to be careful of what statement comes first.",
+        "Take these two functions as an example.",
+        "Heres the first:",
+        "<blockquote>function foo(x) {<br>  if (x < 1) {<br>    return \"Less than one\";<br>  } else if (x < 2) {<br>    return \"Less than two\";<br>  } else {<br>    return \"Greater than or equal to two\";<br>  }<br>}</blockquote>",
+        "And the second just switches the order of the statements:",
+        "<blockquote>function bar(x) {<br>  if (x < 2) {<br>    return \"Less than two\";<br>  } else if (x < 1) {<br>    return \"Less than one\";<br>  } else {<br>    return \"Greater than or equal to two\";<br>  }<br>}</blockquote>",
+        "While these two functions look nearly identical if we pass a number to both we get different outputs.",
+        "<blockquote>foo(0) // \"Less than one\"<br>bar(0) // \"Less than two\"</blockquote>",
+        "<h4>Instructions</h4>",
+        "Change the order of logic in the function so that it will return the correct statements in all cases."
+      ],
+      "challengeSeed": [
+        "function myTest(val) {",
+        "  if(val < 10) {",
+        "    return \"Less than 10\";",
+        "  } else if(val < 5) {",
+        "    return \"Less than 5\";",
+        "  } else {",
+        "    return \"Greater than or equal to 10\";",
+        "  }",
+        "}",
+        "             ",
+        "// Change this value to test",
+        "myTest(7);"
+      ],
+      "solutions": [
+        "function myTest(val) {\n  if(val < 5) {\n    return \"Less than 5\";            \n  } else if (val < 10) {\n    return \"Less than 10\";\n  } else {\n    return \"Greater than or equal to 10\";\n  }\n}"
+      ],
+      "tests": [
+        "assert(myTest(4) === \"Less than 5\", 'message: <code>myTest(5)</code> should return \"Less than 5\"');",
+        "assert(myTest(6) === \"Less than 10\", 'message: <code>myTest(6)</code> should return \"Less than 10\"');",
+        "assert(myTest(11) === \"Greater than or equal to 10\", 'message: <code>myTest(11)</code> should return \"Greater than or equal to 10\"');"
       ],
       "type": "waypoint",
       "challengeType": 1
@@ -3011,9 +3054,8 @@
         "In the casino game Blackjack, a player can gain an advantage over the house by keeping track of the relative number of high and low cards remaining in the deck. This is called <a href=\"https://en.wikipedia.org/wiki/Card_counting\">Card Counting</a>.",
         "Having more high cards remaining in the deck favors the player. Each card is assigned a value according to the table below. When the count is positive, the player should bet high. When the count is zero or negative, the player should bet low.",
         "<table class=\"table table-striped\"><thead><tr><th>Value</th><th>Cards</th></tr></thead><tbody><tr><td>+1</td><td>2, 3, 4, 5, 6</td></tr><tr><td>0</td><td>7, 8, 9</td></tr><tr><td>-1</td><td>10, 'J', 'Q', 'K','A'</td></tr></tbody></table>",
-        "You will write a card counting function. It will receive a <code>card</code> parameter and increment or decrement the global <code>count</code> variable according to the card's value (see table). The function will then return the current count and the string <code>\"Bet\"</code> if the count is positive, or <code>\"Hold\"</code> if the count is zero or negative.",
-        "<strong>Example Output</strong>",
-        "<code>-3 Hold</code><br><code>5 Bet</code>"
+        "You will write a card counting function. It will receive a <code>card</code> parameter and increment or decrement the global <code>count</code> variable according to the card's value (see table). The function will then return a string with the current count and the string <code>\"Bet\"</code> if the count is positive, or <code>\"Hold\"</code> if the count is zero or negative. The current count and the player's decision (<code>\"Bet\"</code> or <code>\"Hold\"</code>) should be separated by a single space.<br><br>",
+        "<strong>Example Output</strong><br><code>\"-3 Hold\"<br>\"5 Bet\"</code>"
       ],
       "releasedOn": "January 1, 2016",
       "challengeSeed": [
@@ -3467,6 +3509,7 @@
         "Here is an example of a JSON object:",
         "<blockquote>var ourMusic = [<br>  {<br>    \"artist\": \"Daft Punk\",<br>    \"title\": \"Homework\",<br>    \"release_year\": 1997,<br>    \"formats\": [ <br>      \"CD\", <br>      \"Cassette\", <br>      \"LP\" ],<br>    \"gold\": true<br>  }<br>];</blockquote>",
         "This is an array of objects and the object has various pieces of <dfn>metadata</dfn> about an album. It also has a nested <code>formats</code> array. Additional album records could be added to the top level array.",
+        "<strong>Note</strong><br>You will need a comma in between objects in JSON objects with more than one object in the array.",
         "<h4>Instructions</h4>",
         "Add a new album to the <code>myMusic</code> JSON object. Add <code>artist</code> and <code>title</code> strings, <code>release_year</code> number, and a <code>formats</code> array of strings."
       ],
@@ -3685,7 +3728,7 @@
       "description": [
         "You can run the same code multiple times by using a loop.",
         "The most common type of JavaScript loop is called a \"<code>for loop</code>\" because it runs \"for\" a specific number of times.",
-        "For loops are declared with three optional expressions seperated by semicolons:",
+        "For loops are declared with three optional expressions separated by semicolons:",
         "<code>for ([initialization]; [condition]; [final-expression])</code>",
         "The <code>initialization</code> statement is executed one time only before the loop starts. It is typically used to define and setup your loop variable.",
         "The <code>condition</code> statement is evaluated at the beginning of every loop iteration and will continue as long as it evalutes to <code>true</code>. When <code>condition</code> is <code>false</code> at the start of the iteration, the loop will stop executing. This means if <code>condition</code> starts as <code>false</code>, your loop will never execute.",
