@@ -72,7 +72,7 @@ main = (function(main) {
     );
 
     main.chat.mainChat = new main.chat.GitterChat({
-      room: 'freecodecamp/freecodecamp',
+      room: 'hhkaos/cursohtml5desdecero',
       activationElement: false,
       targetElement: $('#chat-embed-main')
     });
@@ -86,7 +86,7 @@ main = (function(main) {
 
       $('#chat-embed-main > .gitter-chat-embed-action-bar').prepend(
         '<div class="chat-embed-main-title">' +
-          '<span>Free Code Camp\'s Main Chat</span>' +
+          '<span>Chat Curso de HTML5, CSS3 y JS desde Cero</span>' +
         '</div>'
       );
     });

@@ -1,8 +1,8 @@
 module.exports = {
 
-  db: process.env.MONGODB || process.env.MONGOHQ_URL,
+  db: process.env.MONGODB || process.env.MONGOHQ_URL || 'mongodb://localhost/freecode-camp',
 
-  sessionSecret: process.env.SESSION_SECRET,
+  sessionSecret: 'my_secret',
 
   trello: {
     key: process.env.TRELLO_KEY,
@@ -42,8 +42,8 @@ module.exports = {
   },
 
   google: {
-    clientID: process.env.GOOGLE_ID,
-    clientSecret: process.env.GOOGLE_SECRET,
+    clientID: process.env.GOOGLE_ID || '448858735917-snjpjnhesdsp0dbndt4g441ocjitq7fi.apps.googleusercontent.com',
+    clientSecret: process.env.GOOGLE_SECRET || 'mfZXCQ7ennLD6V9k_hbvtMjA',
     callbackURL: '/auth/google/callback',
     passReqToCallback: true
   },

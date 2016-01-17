@@ -13,6 +13,7 @@ module.exports = {
     session: true,
     failureFlash: true
   },
+  /*,
   'facebook-login': {
     provider: 'facebook',
     module: 'passport-facebook',
@@ -39,13 +40,13 @@ module.exports = {
     scope: ['email', 'user_likes'],
     link: true,
     failureFlash: true
-  },
+  },*/
   'google-login': {
     provider: 'google',
     authScheme: 'oauth2',
     module: 'passport-google-oauth2',
-    clientID: process.env.GOOGLE_ID,
-    clientSecret: process.env.GOOGLE_SECRET,
+    clientID: process.env.GOOGLE_ID || '448858735917-snjpjnhesdsp0dbndt4g441ocjitq7fi.apps.googleusercontent.com',
+    clientSecret: process.env.GOOGLE_SECRET || 'mfZXCQ7ennLD6V9k_hbvtMjA',
     authPath: '/auth/google',
     callbackURL: '/auth/google/callback',
     callbackPath: '/auth/google/callback',
@@ -53,7 +54,7 @@ module.exports = {
     failureRedirect: failureRedirect,
     scope: ['email', 'profile'],
     failureFlash: true
-  },
+  }/*,
   'google-link': {
     provider: 'google',
     authScheme: 'oauth2',
@@ -159,5 +160,5 @@ module.exports = {
     scope: ['email'],
     link: true,
     failureFlash: true
-  }
+  }*/
 };
