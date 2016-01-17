@@ -91,7 +91,6 @@ main = (function(main) {
       );
     });
 
-
     $('#nav-chat-btn').on('click', function() {
       if (!main.chat.isOpen) {
 
